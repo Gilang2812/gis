@@ -1,0 +1,9 @@
+# Direktori dan file node_modules
+node_modules/
+
+# Berkas log dan file sementara
+logs/
+.*.log
+
+# Berkas konfigurasi lokal (contoh: .env)
+.env
