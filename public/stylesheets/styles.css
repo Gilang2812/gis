@@ -1,0 +1,127 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #fffcfc;
+  background-image: url("https://www.transparenttextures.com/patterns/black-linen.png");
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+a {
+  color: #5b4835;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight:bolder;
+}
+
+.gradient-custom-2 {
+  background: #fccb90;
+  background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+  background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+}
+
+.side-bar {
+  background-color: #98918a;
+}
+
+@media (min-width: 768px) {
+  .gradient-form {
+    height: 100vh !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .gradient-custom-2 {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+  }
+}
+
+table {
+  border-radius: 10px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+  border-radius: 20px;
+}
+
+.modal-dialog {
+  position: relative;
+  background-color: #fff;
+  padding: 1rem;
+  animation: fadeIn 0.5s ease;
+}
+
+.modal-content {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+}
+
+
+
+.close {
+  cursor: pointer;
+}
+
+.modal-footer {
+  border-top: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+  text-align: right;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-1000px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.flash-message {
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.success {
+  background-color: #4CAF50;
+}
+
+.border-top-bottom {
+  border-top: 2px solid #d6c4b3; /* Ganti warna dan ketebalan sesuai kebutuhan */
+  border-bottom: 2px solid #d6c4b3; /* Ganti warna dan ketebalan sesuai kebutuhan */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ganti shadow sesuai kebutuhan */
+  padding: 10px; /* Ganti padding sesuai kebutuhan */
+}
+.padding{
+  padding:20px;
+}
+
+/* CSS untuk efek hover-zoom */
+.hover-zoom {
+  transition: transform 0.2s; /* Animasi transisi transform */
+}
+
+.hover-zoom:hover {
+  transform: scale(1.1); /* Perbesar elemen saat dihover */
+}
