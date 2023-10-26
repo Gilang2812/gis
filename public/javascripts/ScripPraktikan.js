@@ -47,7 +47,7 @@ function getPraktikan() {
 
                     document.getElementById("updatePraktikan").addEventListener('submit', (event) => {
                         event.preventDefault();
-
+                        myHeaders.append('authorization', 'Bearer ' + token);
                         myHeaders.append("Content-Type", "application/json");
                         let nama = document.getElementById('namaUpdate').value
                         let kelas = document.getElementById('kelasUpdate').value
@@ -87,7 +87,7 @@ function getPraktikan() {
                 let deleteButton = document.createElement('button');
                 deleteButton.innerText = "Delete";
                 deleteButton.className = "btn btn-danger";
-
+                myHeaders.append('authorization', 'Bearer ' + token);
                 deleteButton.addEventListener('click', () => {
                     if (window.confirm("Apakah yakin ingin menghapus")) {
                         var requestOptions = {

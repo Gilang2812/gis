@@ -67,9 +67,7 @@ const updateTugas = async (req, res) => {
       };
       res.status(404).json(response); // Menggunakan status 404 untuk Not Found
     } else {
-      tugas.asisten_id = data.asisten_id;
       tugas.judul = data.judul;
-      tugas.file = data.file;
       tugas.deskripsi = data.deskripsi;
       tugas.deadline = data.deadline;
 

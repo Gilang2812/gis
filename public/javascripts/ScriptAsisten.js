@@ -46,6 +46,8 @@ function getAsisten() {
                         event.preventDefault();
 
                         myHeaders.append("Content-Type", "application/json");
+                        myHeaders.append('authorization', 'Bearer ' + token);
+                        
                         let nama = document.getElementById('namaUpdate').value
                         var raw = JSON.stringify({
                             "nama": nama
@@ -82,7 +84,8 @@ function getAsisten() {
                 let deleteButton = document.createElement('button');
                 deleteButton.innerText = "Delete";
                 deleteButton.className = "btn btn-danger";
-
+                
+                myHeaders.append('authorization', 'Bearer ' + token);
                 deleteButton.addEventListener('click', () => {
                     if (window.confirm("Apakah yakin ingin menghapus")) {
                         var requestOptions = {
@@ -151,12 +154,11 @@ function createAsisten() {
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-    
                 if (result.success) {
                     localStorage.setItem("flashMessage", result.success);
-                   
-                    location.reload();
-                    window.scrollTo(0, 0);
+
+                    const randomValue = new Date().getTime(); // Nilai waktu acak
+                    location.href = `?random=${randomValue}`;
                 } else if (result.error) {
                     result.error
                     alert("gagal")
