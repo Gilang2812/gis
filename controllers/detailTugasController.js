@@ -1,11 +1,25 @@
-const DetailTugas = require("../models/DetailTugasModel"); // Menggunakan model DetailTugas yang sesuai
+const {DetailTugas, Praktikan, Asisten} = require("../models/relation"); // Menggunakan model DetailTugas yang sesuai
+const Tugas = require("../models/TugasModel");
 
 const success = "Data berhasil ditambahkan";
 const err = "Internal server error";
 
 const getAllDetailTugas = async (req, res) => {
   try {
-    var detailTugas = await DetailTugas.findAll();
+    let tugas_id=req.params.tugas_id
+    var detailTugas = await DetailTugas.findAll({
+      include:[{
+        model:Tugas,
+        attributes:["judul","file",'deskripsi','deadline']
+      },{
+        model:Praktikan,
+        attributes:["nama","nim","kelas"]
+      },{
+        model:Asisten,
+        attributes:["nama"]
+      }],
+      where:{tugas_id:tugas_id},
+    });
     console.log(detailTugas);
     res.status(200).json(detailTugas); // Menggunakan status 200 untuk OK
   } catch (error) {
@@ -56,10 +70,8 @@ const updateDetailTugas = async (req, res) => {
       };
       res.status(404).json(response); // Menggunakan status 404 untuk Not Found
     } else {
-      detailTugas.asisten_id = data.asisten_id;
-      detailTugas.laporan = data.laporan;
+      detailTugas.asisten_id=2,
       detailTugas.nilai = data.nilai;
-
       await detailTugas.save();
       let response = {
         success: "Data berhasil diupdate",

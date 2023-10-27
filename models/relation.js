@@ -17,12 +17,12 @@ Tugas.hasMany(DetailTugas, { foreignKey: "tugas_id" })
 
 
 DetailTugas.belongsTo(Praktikan, { foreignKey: "praktikan_id" })
-DetailTugas.belongsTo(Asisten, { foreignKey: "asisten_id" })
+DetailTugas.belongsTo(Asisten, { foreignKey: "asisten_id", allowNull: true });
 DetailTugas.belongsTo(Tugas, { foreignKey: "tugas_id" },)
 
 module.exports = {
     Praktikan,
-    asisten,
+    Asisten,
     Tugas,
     DetailAbsen,
     DetailTugas,

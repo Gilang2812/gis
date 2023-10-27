@@ -34,7 +34,8 @@ const createTugas = async (req, res) => {
       return DetailTugas.create({
         praktikan_id: praktikan.praktikan_id,
         tugas_id: newTugas.tugas_id,
-        asisten_id: 2,
+        nilai:"belum dinilai"
+
       });
     });
 

@@ -1,4 +1,6 @@
 const Absen = require("../models/AbsenModel"); // Menggunakan model Absen yang sesuai
+const DetailAbsen = require("../models/DetailAbsenModel");
+const Praktikan = require("../models/PraktikanModel");
 
 const success = "Tugas berhasil ";
 const err = "Internal server error";
@@ -24,6 +26,16 @@ const createAbsen = async (req, res) => {
       jam_tutup: jam_tutup,
     });
 
+    const praktikans = await Praktikan.findAll()
+
+    const detailAbsenPromises = praktikans.map(praktikan=>{
+      return DetailAbsen.create({
+        praktikan_id :praktikan.praktikan_id,
+        absen_id:newAbsen.absen_id
+      })
+    })
+
+    await Promise.all(detailAbsenPromises)
     let response = {
       data: newAbsen,
       success: success,

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+
+    <title>PengumpulanTugas</title>
+</head>
+
+<body>
+    <div class="container text-center">
+    </div>
+    <div>
+        <div class="row  ">
+
+            <div class="col-md-3 side-bar rounded padding">
+                <div class=" my-2 text-center vh-50 py-2 rounded ">
+                    <div class="border-top-bottom hover-zoom">
+                        <a href="/praktikan/index">Praktikan</a>
+                    </div>
+                    <div class="border-top-bottom hover-zoom">
+                        <a href="/Tugas/index">Tugas</a>
+                    </div>
+                    <div class="border-top-bottom hover-zoom">
+                        <a href="/Absen/index">Absen</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col ">
+                <div class="header">
+                    <div id="flash-message"></div>
+                </div>
+                <div class="container">
+                    <div class="py-3 my-5">
+                        <h2>list PengumpulanTugas</h2>
+                    </div>
+                    <!-- Tambahkan tombol "Halaman Sebelumnya" dan "Halaman Berikutnya" -->
+
+                    <div class="vh-100 py-3 my-5">
+                        <table class="table table-bordered rounded align-middle" id="PengumpulanTugasTable">
+                            <thead class="text-center">
+                                <tr>
+                                    <th scope="col">judul</th>
+                                    <th scope="col">deadline</th>
+                                    <th scope="col">nilai</th>
+                                    <th scope="col">pengumpul</th>
+                                    <th scope="col">Tugas</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider" id="tableBody">
+                                <tr>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="pagination">
+                            <button class="btn btn-primary" id="previousPage">-</button>
+                            <span id="currentPage" class="mx-2"></span>
+                            <button class="btn btn-primary" id="nextPage">+</button>
+                        </div>
+                        <input type="hidden" class="btn btn-primary" id="scrollButton">
+              
+                        </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--  -->
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nilai Tugas</h5>
+                    <span id="closeModalBtn" class="btn-close" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </span>
+                </div>
+                <form id="updateNilai">
+                    <div class="modal-body">
+
+                    <h1 id="nama_pengumpul">..</h1>
+                    <h4 id="nim" >..</h4>
+                    <p id="penilai">Penilai :</p>
+                    <label for="nilai">nilai :</label>
+                    <input style="border: none;" type="number" name="nilai" id="nilai" placeholder="...">
+                    <iframe height="200px" width="450px" src="/images/1698373885625-Pertemuan 6.pdf" frameborder="2" name="filename_preview"
+                    id="laporan"></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <span id="closeModal" class="btn btn-secondary rounded-pill">Close</span>
+                        <button type="submit" id="closeModal" class="btn btn-success rounded-pill">Nilai</button
+                            type="submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--  -->
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+    <script src="../javascripts/ScriptGeneral.js"></script>
+<script src="../javascripts/ScriptDetailTugas.js"></script>
+<script>
+
+</script>
+
+</html>

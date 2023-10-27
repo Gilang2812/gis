@@ -1,6 +1,4 @@
 
-let token = sessionStorage.getItem('token')
-
 function getTugas() {
     var myHeaders = new Headers();
     myHeaders.append('authorization', 'Bearer ' + token);
@@ -42,6 +40,11 @@ function getTugas() {
                 editButton.innerText = "Edit";
                 editButton.classList = "btn btn-warning ";
 
+                let detailButton = document.createElement("a")
+                detailButton.classList="btn btn-info"
+                detailButton.innerText="Detail"
+                detailButton.href=`/pengumpulan/${tugas.tugas_id}`
+                
                 editButton.addEventListener('click', () => {
                     document.getElementById("modal").style.display = "block";
                     document.getElementById('judulUpdate').value = tugas.judul
@@ -93,6 +96,7 @@ function getTugas() {
                     })
                 })
                 cell6.appendChild(editButton)
+                cell6.appendChild(detailButton)
 
             });
         })

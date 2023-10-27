@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
     cb(null, './public/images'); // Direktori penyimpanan gambar
   },
   filename: function (req, file, cb) {
-    const uniqueSuffix = new Date().getTime() + '-' + file.fieldname;
+    const uniqueSuffix = new Date().getTime() + '-' + file.originalname;
     cb(null, uniqueSuffix);
   },
 });
@@ -44,7 +44,7 @@ router.post('/detailAbsen/create', createDetailAbsen);
 router.post('/detailAbsen/:praktikan_id/:absen_id/update', updateDetailAbsen);
 router.post('/detailAbsen/:praktikan_id/:absen_id/delete', deleteDetailAbsen);
 
-router.get('/detailTugas', getAllDetailTugas);
+router.get('/detailTugas/:tugas_id', getAllDetailTugas);
 router.post('/detailTugas/create', createDetailTugas);
 router.post('/detailTugas/:praktikan_id/:tugas_id/update', updateDetailTugas);
 router.post('/detailTugas/:praktikan_id/:tugas_id/delete', deleteDetailTugas);

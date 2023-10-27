@@ -1,5 +1,4 @@
 
-let token = sessionStorage.getItem('token')
 
 function getAsisten() {
     var myHeaders = new Headers();

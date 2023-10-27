@@ -125,3 +125,13 @@ table {
 .hover-zoom:hover {
   transform: scale(1.1); /* Perbesar elemen saat dihover */
 }
+#currentPage{
+  font-size: larger;
+  font-weight: 800;
+}
+.pagination{
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  
+}

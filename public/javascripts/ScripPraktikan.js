@@ -1,5 +1,4 @@
 
-let token = sessionStorage.getItem('token')
 
 function getPraktikan() {
     var myHeaders = new Headers();

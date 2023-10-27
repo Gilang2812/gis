@@ -13,11 +13,11 @@ const Absen = sequelize.define('Absen', {
     allowNull: false,
   },
   jam_buka: {
-    type: DataTypes.DATE,
+    type: DataTypes.TIME,
     allowNull: false,
   },
   jam_tutup: {
-    type: DataTypes.DATE,
+    type: DataTypes.TIME,
     allowNull: false,
   },
 }, {

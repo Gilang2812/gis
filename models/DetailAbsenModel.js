@@ -13,7 +13,7 @@ const DetailAbsen = sequelize.define('DetailAbsen', {
     allowNull: false,
   },
   status_kehadiran: {
-    type: DataTypes.STRING(100),
+    type: DataTypes.STRING,
   },
 }, {
     tableName: 'detail_absen',

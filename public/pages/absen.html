@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="/stylesheets/styles.css">
 
-    <title>Praktikan</title>
+    <title>Absen</title>
 </head>
 
 <body>
@@ -19,13 +19,13 @@
     <div>
         <div class="row  ">
 
-            <div class="col-md-3 side-bar rounded padding" >
+            <div class="col-md-3 side-bar rounded padding">
                 <div class=" my-2 text-center vh-50 py-2 rounded ">
                     <div class="border-top-bottom hover-zoom">
-                        <a href="/Praktikan/index">Praktikan</a>
+                        <a  href="/praktikan/index">Praktikan</a>
                     </div>
                     <div class="border-top-bottom hover-zoom">
-                        <a href="/Tugas/index">Tugas</a>
+                        <a href="/tugas/index">Tugas</a>
                     </div>
                     <div class="border-top-bottom hover-zoom">
                         <a href="/Absen/index">Absen</a>
@@ -39,50 +39,42 @@
                 </div>
                 <div class="container">
                     <div class="py-3 my-5">
-                        <h2>list Praktikan</h2>
+                        <h2>list Absen</h2>
                     </div>
                     <div class="vh-100 py-3 my-5">
-                        <table class="table table-bordered rounded align-middle" id="PraktikanTable">
+                        <table class="table table-bordered rounded align-middle" id="AbsenTable">
                             <thead class="text-center">
                                 <tr>
-                                    <th scope="col">NIM</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">Kelas</th>
+                                    <th>No</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Jam Buka</th>
+                                    <th scope="col">Jam Tutup</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
-                            <tbody class="table-group-divider">
+                            <tbody class="table-group-divider" id="tBody">
                                 <tr>
                                 </tr>
                             </tbody>
                         </table>
                         <button type="button" class="btn btn-primary" id="scrollButton">add</button>
                     </div>
-                    <div class="mb-5 pb-5">
-                        <form id="createPraktikan">
+                    <div class="mb-5 pb-5 w-50">
+                        <form id="createAbsen" enctype="multipart/form-data">
                             <div>
-                                <h1>Add Praktikan</h1>
+                                <h1>Add Absen</h1>
                             </div>
                             <div class="mb-3">
-                                <label for="nim" class="form-label">NIM</label>
-                                <input type="number" class="form-control" id="nim" aria-describedby="emailHelp">
+                                <label for="tanggal" class="form-label">Tanggal </label>
+                                <input type="date" class="form-control" id="tanggal" required>
                             </div>
                             <div class="mb-3">
-                                <label for="nama" class="form-label">Nama </label>
-                                <input type="text" class="form-control" id="nama" aria-describedby="emailHelp">
+                                <label for="jamBuka" class="form-label">Jam buka</label>
+                                <input type="time" class="form-control" id="jamBuka" required>
                             </div>
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="kelas" class="form-label">Kelas</label>
-                                <input type="text" class="form-control" id="kelas" required>
+                                <label for="jamTutup" class="form-label">Jam tutup</label>
+                                <input type="time" class="form-control" id="jamTutup" required>
                             </div>
                             <button type="submit" class="btn btn-primary rounded-pill">Add</button>
                         </form>
@@ -98,33 +90,28 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Update Praktikan</h5>
+                    <h5 class="modal-title">Update Absen</h5>
                     <span id="closeModalBtn" class="btn-close" aria-label="Close">
                         <span aria-hidden="true"></span>
                     </span>
                 </div>
-                <form id="updatePraktikan">
+                <form id="updateAbsen">
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="nimUpdate" class="form-label">NIM Aslab </label>
-                            <input type="number" class="form-control" id="nimUpdate" aria-describedby="emailHelp"
-                                disabled>
+                            <label for="tanggalUpdate" class="form-label">Tanggal</label>
+                            <input type="datetime-local" class="form-control" id="tanggalUpdate" aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
-                            <label for="emailUpdate" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="emailUpdate" aria-describedby="emailHelp"
-                                disabled>
+                            <label for="jamBukaUpdate" class="form-label">Jam Buka</label>
+                            <input type="time" class="form-control" id="jamBukaUpdate"
+                                aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
-                            <label for="namaUpdate" class="form-label">Nama </label>
-                            <input type="text" class="form-control" id="namaUpdate" aria-describedby="emailHelp"
+                            <label for="jamTutupUpdate" class="form-label">Jam Tutup </label>
+                            <input type="time" class="form-control" id="jamTutupUpdate" aria-describedby="emailHelp"
                                 required>
                         </div>
-                        <div class="mb-3">
-                            <label for="kelas" class="form-label">Kelas </label>
-                            <input type="text" class="form-control" id="kelasUpdate" aria-describedby="emailHelp"
-                                required>
-                        </div>
+
 
                     </div>
                     <div class="modal-footer">
@@ -143,10 +130,9 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
     <script src="../javascripts/ScriptGeneral.js"></script>
-<script src="../javascripts/ScripPraktikan.js"></script>
+<script src="../javascripts/ScriptAbsen.js"></script>
 <script>
-getPraktikan()
-createPraktikan()
+
 </script>
 
 </html>
