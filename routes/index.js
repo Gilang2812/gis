@@ -6,7 +6,7 @@ const { getAllAsisten, createAsisten, updateAsisten, deleteAsisten } = require('
 const { getAllPraktikan, createPraktikan, updatePraktikan, deletePraktikan } = require('../controllers/praktikanController');
 const { getAllTugas, createTugas, updateTugas, deleteTugas } = require('../controllers/tugasController');
 const { getAllAbsen, createAbsen, updateAbsen, deleteAbsen } = require('../controllers/absenController');
-const { getAllDetailAbsen, createDetailAbsen, updateDetailAbsen, deleteDetailAbsen } = require('../controllers/detailAbsenController');
+const { getAllDetailAbsen, createDetailAbsen, updateDetailAbsen, deleteDetailAbsen, absenPraktikan, submitAbsen } = require('../controllers/detailAbsenController');
 const { getAllDetailTugas, createDetailTugas, updateDetailTugas, deleteDetailTugas, praktikanTask, submitLaporan } = require('../controllers/detailTugasController');
 const multer = require('multer');
 const { authenticateToken } = require('../middlewares/middleware');
@@ -72,4 +72,9 @@ router.post('/asisten/:asisten_id/delete', deleteAsisten);
 
 router.get('/praktikan/detailTugas',praktikanTask)
 router.post('/submitTugas/:tugas_id',upload.single('laporan'),submitLaporan)
+
+router.get('/praktikan/detailAbsen', absenPraktikan)
+router.post('/submitAbsen/:absen_id',submitAbsen)
+
+
 module.exports = router;

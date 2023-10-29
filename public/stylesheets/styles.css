@@ -4,12 +4,22 @@ body {
   background-image: url("https://www.transparenttextures.com/patterns/black-linen.png");
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+#logout{
 
+  display: flex;
+  justify-content : end;
+  color: #5b4835;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight:bolder;
+  text-align: center;
+}
 a {
   color: #5b4835;
   text-decoration: none;
   font-size: 20px;
   font-weight:bolder;
+  text-align: center;
 }
 
 .gradient-custom-2 {

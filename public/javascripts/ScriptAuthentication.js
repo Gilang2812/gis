@@ -27,7 +27,12 @@ function login() {
                     let token=result.token
                     sessionStorage.setItem("token", token);
                     localStorage.setItem("flashMessage", result.message);
-                    window.location=`/${role}/index`
+                    if(role==='asisten'){
+                        window.location=`/${role}/index`
+                    }else if(role==='praktikan'){
+                        window.location=`/${role}/tugas`
+
+                    }
                 } else if(result.error){
                     alert("gagal : " + result.error)
                 }

@@ -7,17 +7,17 @@ const err = "Internal server error";
 
 const getAllDetailAbsen = async (req, res) => {
   try {
-    let absen_id=req.params.absen_id
+    let absen_id = req.params.absen_id
     var detailAbsens = await DetailAbsen.findAll({
-      include:[{
-        model:Absen,
-        attributes:["nama","tanggal","jam_buka","jam_tutup"]
+      include: [{
+        model: Absen,
+        attributes: ["nama", "tanggal", "jam_buka", "jam_tutup"]
       },
-    {
-      model:Praktikan,
-      attributes:["nama","nim","kelas"]
-    }],
-    where:{absen_id:absen_id}
+      {
+        model: Praktikan,
+        attributes: ["nama", "nim", "kelas"]
+      }],
+      where: { absen_id: absen_id }
     });
     console.log(detailAbsens);
     res.status(200).json(detailAbsens); // Menggunakan status 200 untuk OK
@@ -112,4 +112,59 @@ const deleteDetailAbsen = async (req, res) => {
   }
 };
 
-module.exports = { getAllDetailAbsen, createDetailAbsen, updateDetailAbsen, deleteDetailAbsen };
+const absenPraktikan = async (req, res) => {
+  try {
+    const praktikan_id = req.user.user.praktikan_id
+    if (!praktikan_id) {
+      res.status(403).json({ error: "anda bukan praktikan" })
+    }
+    const absen = await DetailAbsen.findAll({
+      include: [{
+        model: Absen,
+        attributes: ['nama', 'tanggal', 'jam_buka', 'jam_tutup']
+      }],
+      where: {
+        praktikan_id: praktikan_id
+      }
+    })
+
+    res.status(200).json(absen)
+  } catch (error) {
+    console.log("deleteDetailAbsen Error + ", error);
+    res.status(500).json({ error: err });
+  }
+}
+
+const submitAbsen = async (req, res) => {
+  try {
+    const praktikan_id = req.user.user.praktikan_id
+    const absen_id = req.params.absen_id
+
+    const submitAbsen = await DetailAbsen.findOne({
+      where:{
+        praktikan_id:praktikan_id,
+        absen_id:absen_id
+      }
+    })
+    if(!submitAbsen){
+      let response = {
+        error: "Data tidak ditemukan",
+      };
+      res.status(404).json(response);
+    }else {
+      submitAbsen.status_kehadiran="hadir"
+      await submitAbsen.save()
+      let response = {
+        success: "Absen berhasil",
+        data: submitAbsen,
+      };
+      res.status(201).json(response)
+    }
+
+  } catch (error) {
+    console.log("deleteDetailAbsen Error + ", error);
+    res.status(500).json({ error: err });
+  }
+}
+
+module.exports = { submitAbsen, absenPraktikan, getAllDetailAbsen, createDetailAbsen, updateDetailAbsen, deleteDetailAbsen };

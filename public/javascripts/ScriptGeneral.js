@@ -1,5 +1,11 @@
 let token = sessionStorage.getItem('token')
 
+document.getElementById('logout').addEventListener('click',()=>{
+    if(window.confirm("apakah anda ingin logout")){
+        sessionStorage.removeItem('token')
+        window.location.reload( )
+    }
+})
 if (!token) {
     window.location.href = "/login"
 }

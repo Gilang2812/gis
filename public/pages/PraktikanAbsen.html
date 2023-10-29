@@ -10,23 +10,35 @@
 
     <link rel="stylesheet" href="/stylesheets/styles.css">
 
-    <title>Pengumpulan Tugas</title>
+    <title>Pengumpulan Absen</title>
 </head>
 
 <body>
+    <div class="header">
+        <div id="flash-message"></div>
+    </div>
     <div class="container text-center">
     </div>
     <div>
         <div class="row  ">
 
-            <div class="col-md-3 side-bar rounded padding">
+            <div id="side-nav" class="col-md-3 side-bar rounded padding">
+                <div class="my-2 text-center vh-50 py-2 rounded ">
+                    <span id="logout">
+                        <div class="border-top-bottom hover-zoom rounded">Logout</div>
+                    </span>
+                </div>
                 <div class=" my-2 text-center vh-50 py-2 rounded ">
-                    <div class="border-top-bottom hover-zoom">
-                        <a href="/praktikan/tugas">Tugas</a>
+                    <a href="/praktikan/tugas">
+                        <div class="border-top-bottom hover-zoom">
+                            Tugas
+                        </div>
+                    </a>
+                    <a href="/praktikan/absen">
+                        <div class="border-top-bottom hover-zoom">
+                        Absen
                     </div>
-                    <div class="border-top-bottom hover-zoom">
-                        <a href="/praktikan/absen">Absen</a>
-                    </div>
+                </a>
                 </div>
             </div>
 
@@ -36,19 +48,20 @@
                 </div>
                 <div class="container">
                     <div class="py-3 my-5">
-                        <h2 id="title">list PengumpulanTugas</h2>
+                        <h2 id="title">list Pengumpulan Absen</h2>
                     </div>
 
 
                     <div class="vh-100 py-3 my-5">
-                        <table class="table table-bordered rounded align-middle" id="PengumpulanTugasTable">
+                        <table class="table table-bordered rounded align-middle" id="PengumpulanAbsenTable">
                             <thead class="text-center">
                                 <tr>
-                                    <th scope="col">judul</th>
-                                    <th scope="col">deadline</th>
-                                    <th scope="col">nilai</th>
-                                    <th scope="col">Tugas</th>
-                                    <th scope="col">Laporan</th>
+                                    <th>No</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Jam Buka</th>
+                                    <th scope="col">Jam Tutup</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -76,21 +89,15 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Nilai Tugas</h5>
+                    <h5 class="modal-title">Nilai Absen</h5>
                     <span id="closeModalBtn" class="btn-close" aria-label="Close">
                         <span aria-hidden="true"></span>
                     </span>
                 </div>
-                <form id="updateTugas">
+                <form id="updateAbsen">
                     <div class="modal-body">
 
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile" onchange="updateFileName(this)">
-                            <label class="custom-file-label" for="customFile">Pilih file</label>
-                        </div>
-                        <div id="selectedFileText">
-                            <span id="fileNameText">Belum ada file yang dipilih</span>
-                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <span id="closeModal" class="btn btn-secondary rounded-pill">Close</span>
@@ -108,7 +115,7 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
 <script src="../javascripts/ScriptGeneral.js"></script>
-<script src="../javascripts/ScriptTugasPraktikan.js"></script>
+<script src="../javascripts/ScriptAbsenPraktikan.js"></script>
 <script>
 
 </script>

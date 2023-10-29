@@ -14,22 +14,33 @@
 </head>
 
 <body>
+    <div class="header">
+        <div id="flash-message"></div>
+    </div>
     <div class="container text-center">
     </div>
     <div>
         <div class="row  ">
 
-            <div class="col-md-3 side-bar rounded padding" >
+            <div class="col-md-3 side-bar rounded padding">
+                <div class="my-2 text-center vh-50 py-2 rounded ">
+                    <span id="logout">
+                        <div class="border-top-bottom hover-zoom rounded">Logout</div>
+                    </span>
+                </div>
                 <div class=" my-2 text-center vh-50 py-2 rounded ">
-                    <div class="border-top-bottom hover-zoom">
-                        <a href="/Praktikan/index">Praktikan</a>
-                    </div>
-                    <div class="border-top-bottom hover-zoom">
-                        <a href="/Tugas/index">Tugas</a>
-                    </div>
-                    <div class="border-top-bottom hover-zoom">
-                        <a href="/Absen/index">Absen</a>
-                    </div>
+                    <a href="/asisten/index">
+                        <div class="border-top-bottom hover-zoom">Asisten</div>
+                    </a>
+                    <a href="/praktikan/index">
+                        <div class="border-top-bottom hover-zoom">Praktikan</div>
+                    </a>
+                    <a href="/Tugas/index">
+                        <div class="border-top-bottom hover-zoom">Tugas</div>
+                    </a>
+                    <a href="/Absen/index">
+                        <div class="border-top-bottom hover-zoom">Absen</div>
+                    </a>
                 </div>
             </div>
 
@@ -142,11 +153,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
-    <script src="../javascripts/ScriptGeneral.js"></script>
+<script src="../javascripts/ScriptGeneral.js"></script>
 <script src="../javascripts/ScripPraktikan.js"></script>
 <script>
-getPraktikan()
-createPraktikan()
+    getPraktikan()
+    createPraktikan()
 </script>
 
 </html>
