@@ -21,6 +21,7 @@ function displayData(data) {
     var tableBody = document.getElementById("tableBody");
     tableBody.innerHTML = '';
 
+
     data.forEach((item, index) => {
 
         let status = item.status_kehadiran;
@@ -39,7 +40,7 @@ function displayData(data) {
         cell4.innerHTML = item.Absen.jam_buka;
         cell5.innerHTML = item.Absen.jam_tutup;
 
-       
+
 
         var actionButton = document.createElement('button');
         actionButton.textContent = 'Absen';
@@ -48,9 +49,10 @@ function displayData(data) {
         if (status === null) {
             status = "belum absen"
             cell6.style.color = 'red'
-        }else{
-            actionButton.disabled=true
+        } else {
+            actionButton.disabled = true
         }
+        
         cell6.innerHTML = status
         actionButton.addEventListener('click', () => {
 
@@ -92,7 +94,7 @@ function submitAbsen(absen) {
         .catch(error => {
             console.log('error', error)
             alert(error)
-        }); 
+        });
 }
 
 getPraktikanAbsen();
