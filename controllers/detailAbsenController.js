@@ -1,11 +1,24 @@
+const Absen = require("../models/AbsenModel");
 const DetailAbsen = require("../models/DetailAbsenModel"); // Menggunakan model DetailAbsen yang sesuai
+const Praktikan = require("../models/PraktikanModel");
 
 const success = "Data berhasil ditambahkan";
 const err = "Internal server error";
 
 const getAllDetailAbsen = async (req, res) => {
   try {
-    var detailAbsens = await DetailAbsen.findAll();
+    let absen_id=req.params.absen_id
+    var detailAbsens = await DetailAbsen.findAll({
+      include:[{
+        model:Absen,
+        attributes:["nama","tanggal","jam_buka","jam_tutup"]
+      },
+    {
+      model:Praktikan,
+      attributes:["nama","nim","kelas"]
+    }],
+    where:{absen_id:absen_id}
+    });
     console.log(detailAbsens);
     res.status(200).json(detailAbsens); // Menggunakan status 200 untuk OK
   } catch (error) {

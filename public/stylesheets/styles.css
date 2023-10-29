@@ -17,6 +17,11 @@ a {
   background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
   background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
 }
+h2{
+color: #5b4835;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+font-weight: 800;
+}
 
 .side-bar {
   background-color: #98918a;
@@ -133,5 +138,38 @@ table {
   display: flex;
   align-items: center;
   margin-bottom: 30px;
+  color: #5b4835;
   
+}
+
+#waktu{
+  color: #5b4835;
+  font-family: sans-serif;
+  font-weight: 700;
+  font-size: small;
+}
+
+.custom-file-input {
+  visibility: hidden;
+  position: absolute;
+}
+
+.custom-file-label {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  width: 150px;
+}
+
+.custom-file-label:hover {
+  background-color: #0056b3;
+}
+
+#selectedFileText {
+  display: block;
+  margin-top: 10px;
 }

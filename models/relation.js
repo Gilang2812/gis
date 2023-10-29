@@ -3,7 +3,7 @@ const Tugas = require('./TugasModel')
 const DetailTugas = require('./DetailTugasModel')
 const DetailAbsen = require('./DetailAbsenModel')
 const Absen = require('./AbsenModel')
-const Asisten = require('./asistenModel')
+const Asisten = require('./AsistenModel')
 
 
 Absen.hasMany(DetailAbsen, { foreignKey: "absen_id" })

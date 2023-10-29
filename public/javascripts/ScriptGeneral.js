@@ -1,5 +1,8 @@
 let token = sessionStorage.getItem('token')
 
+if (!token) {
+    window.location.href = "/login"
+}
 document.getElementById("scrollButton").addEventListener("click", function () {
 
     window.scrollBy(1, 10 * window.innerHeight);
@@ -24,4 +27,35 @@ if (flashMessage) {
     p.className = "flash-message success"
     message.appendChild(p);
     localStorage.removeItem("flashMessage");
+}
+function capitalizeEachWord(inputString) {
+    var words = inputString.split(' ');
+    for (var i = 0; i < words.length; i++) {
+        var firstLetter = words[i].charAt(0).toUpperCase();
+        words[i] = firstLetter + words[i].slice(1);
+    }
+    var resultString = words.join(' ');
+    return resultString;
+}
+
+function ubahBulanKeNama(tgl) {
+    var namaBulan = [
+        "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+        "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+    ];
+
+    var namaHari = [
+        "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"
+    ];
+
+    var tanggal = new Date(tgl);
+    var nomorBulan = tanggal.getMonth();
+    var namaBulanTeks = namaBulan[nomorBulan];
+    var namaHariTeks = namaHari[tanggal.getDay()];
+    var hari = tanggal.getDate();
+    var tahun = tanggal.getFullYear();
+
+    var hasil = namaHariTeks + ", " + hari + " " + namaBulanTeks + " " + tahun;
+
+    return hasil;
 }

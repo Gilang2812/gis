@@ -32,7 +32,10 @@ function getTugas() {
                 cell1.innerHTML = index + 1;
                 cell2.innerHTML = tugas.judul;
                 cell3.innerHTML = tugas.deadline;
-                cell4.innerHTML = tugas.file;
+                var file = tugas.file;
+                var Name = file.split('-')[1]
+                cell4.innerHTML = Name;
+            
                 cell5.innerHTML = tugas.deskripsi;
                 cell6.className = `text-center d-flex justify-content-md-around`
 
@@ -43,7 +46,7 @@ function getTugas() {
                 let detailButton = document.createElement("a")
                 detailButton.classList="btn btn-info"
                 detailButton.innerText="Detail"
-                detailButton.href=`/pengumpulan/${tugas.tugas_id}`
+                detailButton.href=`/pengumpulan/${tugas.tugas_id}?judul=${tugas.judul}`
                 
                 editButton.addEventListener('click', () => {
                     document.getElementById("modal").style.display = "block";

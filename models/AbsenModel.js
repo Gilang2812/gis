@@ -8,6 +8,10 @@ const Absen = sequelize.define('Absen', {
     primaryKey: true,
     allowNull: false,
   },
+  nama: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   tanggal: {
     type: DataTypes.DATE,
     allowNull: false,

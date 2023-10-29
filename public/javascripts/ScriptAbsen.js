@@ -22,10 +22,12 @@ function getAbsen() {
             data.forEach((item, index) => {
                 var row = tableBody.insertRow();
                 row.insertCell(0).textContent = index + 1; // No
-                row.insertCell(1).textContent = item.tanggal;
-                row.insertCell(2).textContent = item.jam_buka;
-                row.insertCell(3).textContent = item.jam_tutup;
-                const cell4 = row.insertCell(4);
+                row.insertCell(1).textContent = item.nama;
+                let tanggalTanpaZT = item.tanggal.substring(0, 10)
+                row.insertCell(2).textContent = tanggalTanpaZT;
+                row.insertCell(3).textContent = item.jam_buka;
+                row.insertCell(4).textContent = item.jam_tutup;
+                const cell4 = row.insertCell(5);
                 cell4.classList = `text-center d-flex justify-content-md-around`
 
                 const edtiButton = document.createElement("button")
@@ -34,14 +36,15 @@ function getAbsen() {
                 const detailButton = document.createElement("a")
                 detailButton.innerText = "Detail"
                 detailButton.classList = "btn btn-info"
+                let tanggal = new Date(item.tanggal).toISOString().slice(0, 16);
 
-                detailButton.href = `/absen/${item.absen_id}`
+                detailButton.href = `/absen/${item.absen_id}?nama=${item.nama}&tgl=${tanggal}`
 
                 edtiButton.addEventListener('click', () => {
                     console.log(item.absen_id)
                     document.getElementById("modal").style.display = "block";
-
-                    document.getElementById('tanggalUpdate').value = new Date(item.tanggal).toISOString().slice(0, 16);
+                    document.getElementById("namaUpdate").value = item.nama
+                    document.getElementById('tanggalUpdate').value = tanggal
                     function convertToTimeFormat(timeString) {
                         const timeParts = timeString.split(':');
                         return timeParts[0] + ':' + timeParts[1];
@@ -53,13 +56,17 @@ function getAbsen() {
                     document.getElementById('updateAbsen').addEventListener('submit', (event) => {
                         event.preventDefault();
 
+                        const nama = document.getElementById('namaUpdate').value
                         const tanggal = document.getElementById('tanggalUpdate').value
                         const jamBuka = document.getElementById('jamBukaUpdate').value
                         const jamTutup = document.getElementById('jamTutupUpdate').value
-                        myHeaders.append('authorization', 'Bearer ' + token);
+
+                        var myHeaders = new Headers();
                         myHeaders.append("Content-Type", "application/json");
+                        myHeaders.append('authorization', 'Bearer ' + token);
 
                         var raw = JSON.stringify({
+                            "nama": nama,
                             "tanggal": tanggal,
                             "jam_buka": jamBuka,
                             "jam_tutup": jamTutup
@@ -82,8 +89,8 @@ function getAbsen() {
                                     const randomValue = new Date().getTime(); // Nilai waktu acak
                                     location.href = `?random=${randomValue}`;
                                 } else if (result.error) {
-                                    result.error
-                                    alert("gagal")
+                                    alert('gagal', result.error)
+
                                 }
                             })
                             .catch(error => {
@@ -112,12 +119,14 @@ function createAbsen() {
         myHeaders.append('authorization', 'Bearer ' + token);
         myHeaders.append("Content-Type", "application/json");
 
+        const nama = document.getElementById('nama').value
         const tanggal = document.getElementById('tanggal').value
         const jamBuka = document.getElementById('jamBuka').value
         const jamTutup = document.getElementById('jamTutup').value
 
         var raw = JSON.stringify({
 
+            "nama": nama,
             "tanggal": tanggal,
             "jam_buka": jamBuka,
             "jam_tutup": jamTutup

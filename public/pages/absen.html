@@ -46,6 +46,7 @@
                             <thead class="text-center">
                                 <tr>
                                     <th>No</th>
+                                    <th scope="col">Nama</th>
                                     <th scope="col">Tanggal</th>
                                     <th scope="col">Jam Buka</th>
                                     <th scope="col">Jam Tutup</th>
@@ -63,6 +64,10 @@
                         <form id="createAbsen" enctype="multipart/form-data">
                             <div>
                                 <h1>Add Absen</h1>
+                            </div>
+                            <div class="mb-3">
+                                <label for="nama" class="form-label">Nama </label>
+                                <input type="text   " class="form-control" id="nama" required>
                             </div>
                             <div class="mb-3">
                                 <label for="tanggal" class="form-label">Tanggal </label>
@@ -97,6 +102,10 @@
                 </div>
                 <form id="updateAbsen">
                     <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="namaUpdate" class="form-label">nama</label>
+                            <input type="text" class="form-control" id="namaUpdate" aria-describedby="emailHelp">
+                        </div>
                         <div class="mb-3">
                             <label for="tanggalUpdate" class="form-label">Tanggal</label>
                             <input type="datetime-local" class="form-control" id="tanggalUpdate" aria-describedby="emailHelp">

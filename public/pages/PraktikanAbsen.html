@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="/stylesheets/styles.css">
 
-    <title>PengumpulanTugas</title>
+    <title>Pengumpulan Tugas</title>
 </head>
 
 <body>
@@ -22,13 +22,10 @@
             <div class="col-md-3 side-bar rounded padding">
                 <div class=" my-2 text-center vh-50 py-2 rounded ">
                     <div class="border-top-bottom hover-zoom">
-                        <a href="/praktikan/index">Praktikan</a>
+                        <a href="/praktikan/tugas">Tugas</a>
                     </div>
                     <div class="border-top-bottom hover-zoom">
-                        <a href="/Tugas/index">Tugas</a>
-                    </div>
-                    <div class="border-top-bottom hover-zoom">
-                        <a href="/Absen/index">Absen</a>
+                        <a href="/praktikan/absen">Absen</a>
                     </div>
                 </div>
             </div>
@@ -41,17 +38,17 @@
                     <div class="py-3 my-5">
                         <h2 id="title">list PengumpulanTugas</h2>
                     </div>
-                    <!-- Tambahkan tombol "Halaman Sebelumnya" dan "Halaman Berikutnya" -->
+
 
                     <div class="vh-100 py-3 my-5">
                         <table class="table table-bordered rounded align-middle" id="PengumpulanTugasTable">
                             <thead class="text-center">
                                 <tr>
-                                    <th scope="col">Nomor</th>
+                                    <th scope="col">judul</th>
                                     <th scope="col">deadline</th>
                                     <th scope="col">nilai</th>
-                                    <th scope="col">pengumpul</th>
                                     <th scope="col">Tugas</th>
+                                    <th scope="col">Laporan</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -84,20 +81,20 @@
                         <span aria-hidden="true"></span>
                     </span>
                 </div>
-                <form id="updateNilai">
+                <form id="updateTugas">
                     <div class="modal-body">
 
-                        <h1 id="nama_pengumpul">..</h1>
-                        <h4 id="nim">..</h4>
-                        <p id="penilai">Penilai :</p>
-                        <label for="nilai">nilai :</label>
-                        <input style="border: none;" type="number" name="nilai" id="nilai" placeholder="...">
-                        <iframe height="200px" width="450px" src="/images/1698373885625-Pertemuan 6.pdf" frameborder="2"
-                            name="filename_preview" id="laporan"></iframe>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFile" onchange="updateFileName(this)">
+                            <label class="custom-file-label" for="customFile">Pilih file</label>
+                        </div>
+                        <div id="selectedFileText">
+                            <span id="fileNameText">Belum ada file yang dipilih</span>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <span id="closeModal" class="btn btn-secondary rounded-pill">Close</span>
-                        <button type="submit" id="closeModal" class="btn btn-success rounded-pill">Nilai</button
+                        <button type="submit" id="closeModal" class="btn btn-success rounded-pill">Submit</button
                             type="submit">
                     </div>
                 </form>
@@ -111,7 +108,7 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
 <script src="../javascripts/ScriptGeneral.js"></script>
-<script src="../javascripts/ScriptDetailTugas.js"></script>
+<script src="../javascripts/ScriptTugasPraktikan.js"></script>
 <script>
 
 </script>

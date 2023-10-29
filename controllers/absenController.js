@@ -18,9 +18,10 @@ const getAllAbsen = async (req, res) => {
 
 const createAbsen = async (req, res) => {
   try {
-    const { tanggal, jam_buka, jam_tutup } = req.body;
+    const {nama, tanggal, jam_buka, jam_tutup } = req.body;
 
     const newAbsen = await Absen.create({
+      nama:nama,
       tanggal: tanggal,
       jam_buka: jam_buka,
       jam_tutup: jam_tutup,
@@ -61,6 +62,7 @@ const updateAbsen = async (req, res) => {
       };
       res.status(404).json(response); // Menggunakan status 404 untuk Not Found
     } else {
+      absen.nama = data.nama
       absen.tanggal = data.tanggal;
       absen.jam_buka = data.jam_buka;
       absen.jam_tutup = data.jam_tutup;

@@ -7,7 +7,7 @@ const { getAllPraktikan, createPraktikan, updatePraktikan, deletePraktikan } = r
 const { getAllTugas, createTugas, updateTugas, deleteTugas } = require('../controllers/tugasController');
 const { getAllAbsen, createAbsen, updateAbsen, deleteAbsen } = require('../controllers/absenController');
 const { getAllDetailAbsen, createDetailAbsen, updateDetailAbsen, deleteDetailAbsen } = require('../controllers/detailAbsenController');
-const { getAllDetailTugas, createDetailTugas, updateDetailTugas, deleteDetailTugas } = require('../controllers/detailTugasController');
+const { getAllDetailTugas, createDetailTugas, updateDetailTugas, deleteDetailTugas, praktikanTask, submitLaporan } = require('../controllers/detailTugasController');
 const multer = require('multer');
 const { authenticateToken } = require('../middlewares/middleware');
 const storage = multer.diskStorage({
@@ -37,9 +37,9 @@ const upload = multer({
 
 router.post('/login',login)
 
-// router.use(authenticateToken)
+router.use(authenticateToken)
 
-router.get('/detailAbsen', getAllDetailAbsen);
+router.get('/detailAbsen/:absen_id', getAllDetailAbsen);
 router.post('/detailAbsen/create', createDetailAbsen);
 router.post('/detailAbsen/:praktikan_id/:absen_id/update', updateDetailAbsen);
 router.post('/detailAbsen/:praktikan_id/:absen_id/delete', deleteDetailAbsen);
@@ -70,5 +70,6 @@ router.post('/asisten/create', createAsisten);
 router.post('/asisten/:asisten_id/update', updateAsisten);
 router.post('/asisten/:asisten_id/delete', deleteAsisten);
 
-
+router.get('/praktikan/detailTugas',praktikanTask)
+router.post('/submitTugas/:tugas_id',upload.single('laporan'),submitLaporan)
 module.exports = router;

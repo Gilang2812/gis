@@ -23,11 +23,18 @@ router.get('/tugas/index', (req, res, next)=> {
 router.get('/absen/index', (req, res, next)=> {
   res.sendFile(link+"absen.html")
 });
+router.get('/absen/:praktikan_id', (req, res, next)=> {
+  res.sendFile(link+"detailAbsen.html")
+});
 router.get('/pengumpulan/:tugas_id', (req, res, next)=> {
   res.sendFile(link+"pengumpulan.html")
 });
-router.get('/absen/:absen_id', (req, res, next)=> {
-  res.sendFile(link+"detailAbsen.html")
+router.get('/praktikan/absen', (req, res, next)=> {
+  res.sendFile(link+"PraktikanAbsen.html")
 });
+router.get('/praktikan/tugas', (req, res, next)=> {
+  res.sendFile(link+"TugasPraktikan.html")
+});
+
 
 module.exports = router;

@@ -71,7 +71,7 @@ function getPraktikan() {
 
                                     location.reload();
                                 } else if (result.error) {
-                                    result.error
+                                    alert('gagal', result.error)
                                     alert("gagal")
                                 }
                             })

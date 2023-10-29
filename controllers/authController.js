@@ -8,27 +8,35 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const generateToken = (user) => {
-    return jwt.sign({ user: user}, process.env.SECRET_TOKEN);
+    return jwt.sign({ user: user }, process.env.SECRET_TOKEN);
 };
 
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
         if (!email || !password) {
-            return res.status(400).json({ error: "Email and password are required" });
+            let response = {
+                error: "Email and password are required"
+            }
+            return res.status(400).json(response);
         }
 
         let user = null;
 
         const asisten = await Asisten.findOne({ where: { email: email } });
         const praktikan = await Praktikan.findOne({ where: { email: email } });
-
+        let role
         if (asisten) {
             user = asisten;
+            role ="asisten"
         } else if (praktikan) {
             user = praktikan;
+            role ="praktikan"
         } else {
-            return res.status(404).json({ error: "Email tidak terdaftar" });
+            let response = {
+                error: "Email tidak terdaftar"
+            }
+            return res.status(404).json(response);
         }
 
         const match = await bcrypt.compare(password, user.password);
@@ -43,7 +51,8 @@ const login = async (req, res) => {
         const response = {
             token: token,
             message: "Login berhasil",
-            user: user // Ini seharusnya user, bukan variabel undefined "user"
+            user: user ,
+            role:role
         };
 
         return res.status(200).json(response);
