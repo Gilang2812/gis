@@ -1,21 +1,21 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #fffcfc;
-  background-image: url("https://www.transparenttextures.com/patterns/black-linen.png");
+
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 #logout{
 
   display: flex;
   justify-content : end;
-  color: #5b4835;
+  color: rgb(46,48,52);
   text-decoration: none;
   font-size: 20px;
   font-weight:bolder;
   text-align: center;
 }
 a {
-  color: #5b4835;
+  color: rgb(46,48,52);
   text-decoration: none;
   font-size: 20px;
   font-weight:bolder;
@@ -28,13 +28,13 @@ a {
   background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
 }
 h2{
-color: #5b4835;
+color:#8c94ae;
 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 font-weight: 800;
 }
 
 .side-bar {
-  background-color: #98918a;
+  background-color:#8c94ae;
 }
 
 @media (min-width: 768px) {
@@ -123,9 +123,7 @@ table {
 }
 
 .border-top-bottom {
-  border-top: 2px solid #d6c4b3; /* Ganti warna dan ketebalan sesuai kebutuhan */
-  border-bottom: 2px solid #d6c4b3; /* Ganti warna dan ketebalan sesuai kebutuhan */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ganti shadow sesuai kebutuhan */
+ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ganti shadow sesuai kebutuhan */
   padding: 10px; /* Ganti padding sesuai kebutuhan */
 }
 .padding{
@@ -148,12 +146,12 @@ table {
   display: flex;
   align-items: center;
   margin-bottom: 30px;
-  color: #5b4835;
+  color: rgb(46,48,52);
   
 }
 
 #waktu{
-  color: #5b4835;
+  color: rgb(46,48,52);
   font-family: sans-serif;
   font-weight: 700;
   font-size: small;
@@ -165,7 +163,7 @@ table {
 }
 
 .custom-file-label {
-  background-color: #007BFF;
+  background-color:#8c94ae;
   color: #fff;
   padding: 8px 12px;
   border-radius: 5px;
@@ -176,7 +174,7 @@ table {
 }
 
 .custom-file-label:hover {
-  background-color: #0056b3;
+  background-color:#a4adbe;
 }
 
 #selectedFileText {

@@ -52,6 +52,18 @@
                     <div class="py-3 my-5">
                         <h2>list Praktikan</h2>
                     </div>
+                    <div class="container text-center">
+                        <div class="mb-3">
+                            <label for="kelasSelection" class="form-label">Pilih Kelas:</label>
+                            <select class="form-select" id="kelasSelection">
+                                <!-- Tambahkan opsi kelas sesuai dengan data yang ada -->
+                                <option value="">Semua Kelas</option>
+                               <option value="A">A</option>
+                               <option value="B">B</option>
+                               <option value="C">C</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="vh-100 py-3 my-5">
                         <table class="table table-bordered rounded align-middle" id="PraktikanTable">
                             <thead class="text-center">
@@ -156,7 +168,15 @@
 <script src="../javascripts/ScriptGeneral.js"></script>
 <script src="../javascripts/ScripPraktikan.js"></script>
 <script>
-    getPraktikan()
+document.getElementById("kelasSelection").addEventListener("change", function () {
+    // Panggil getPraktikan setelah nilai selection berubah
+    getPraktikan();
+});
+
+// Panggil fungsi getPraktikan saat halaman dimuat
+document.addEventListener('DOMContentLoaded', function () {
+    getPraktikan();
+});
     createPraktikan()
 </script>
 
