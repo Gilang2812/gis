@@ -69,8 +69,7 @@ function getTugasPraktikan() {
         if (item.laporan === null || undefined) {
             item.laporan = "belum mengumpulkan";
             cell5.style.color = "red";
-        }
-  ;
+        };
         cell5.innerHTML = item.laporan;
 
       const submitButton = document.createElement("button");
