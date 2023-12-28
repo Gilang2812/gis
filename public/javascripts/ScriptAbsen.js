@@ -1,6 +1,10 @@
 
 getAbsen();
 createAbsen();
+
+let currentPage = 1;
+const itemsPerPage = 5; // Adjust the number of items per page as needed
+
 function getAbsen() {
     var myHeaders = new Headers();
     myHeaders.append('authorization', 'Bearer ' + token);
@@ -14,98 +18,88 @@ function getAbsen() {
     fetch("http://localhost:3000/absen", requestOptions)
         .then(response => response.json()) // Assuming the response is in JSON format
         .then(data => {
+            // Sort the data by name
+            data.sort((a, b) => a.nama.localeCompare(b.nama));
 
-            console.log(data)
-            var tableBody = document.getElementById("tBody");
+            const updateTable = (data) => {
+                const tableBody = document.getElementById("tBody");
+                tableBody.innerHTML = "";
 
-            // Loop through the data and populate the table
-            data.forEach((item, index) => {
-                var row = tableBody.insertRow();
-                row.insertCell(0).textContent = index + 1; // No
-                row.insertCell(1).textContent = item.nama;
-                let tanggalTanpaZT = item.tanggal.substring(0, 10)
-                row.insertCell(2).textContent = tanggalTanpaZT;
-                row.insertCell(3).textContent = item.jam_buka;
-                row.insertCell(4).textContent = item.jam_tutup;
-                const cell4 = row.insertCell(5);
-                cell4.classList = `text-center d-flex justify-content-md-around`
+                const startIndex = (currentPage - 1) * itemsPerPage;
+                const endIndex = startIndex + itemsPerPage;
 
-                const edtiButton = document.createElement("button")
-                edtiButton.innerText = "Edit"
-                edtiButton.classList = "btn btn-warning"
-                const detailButton = document.createElement("a")
-                detailButton.innerText = "Detail"
-                detailButton.classList = "btn btn-info"
-                let tanggal = new Date(item.tanggal).toISOString().slice(0, 16);
+                data.slice(startIndex, endIndex).forEach((item, index) => {
+                    const row = tableBody.insertRow();
+                    row.insertCell(0).textContent = startIndex + index + 1; // No
+                    row.insertCell(1).textContent = item.nama;
+                    let tanggalTanpaZT = item.tanggal.substring(0, 10);
+                    row.insertCell(2).textContent = tanggalTanpaZT;
+                    row.insertCell(3).textContent = item.jam_buka;
+                    row.insertCell(4).textContent = item.jam_tutup;
+                    const cell5 = row.insertCell(5);
+                    cell5.classList = `text-center d-flex justify-content-md-around`;
 
-                detailButton.href = `/absen/${item.absen_id}?nama=${item.nama}&tgl=${tanggal}`
+                    const editButton = document.createElement("button");
+                    editButton.innerText = "Edit";
+                    editButton.classList = "btn btn-warning text-white";
+                    const detailButton = document.createElement("a");
+                    detailButton.innerText = "Detail";
+                    detailButton.classList = "btn btn-info text-white";
+                    let tanggal = new Date(item.tanggal).toISOString().slice(0, 16);
 
-                edtiButton.addEventListener('click', () => {
-                    console.log(item.absen_id)
-                    document.getElementById("modal").style.display = "block";
-                    document.getElementById("namaUpdate").value = item.nama
-                    document.getElementById('tanggalUpdate').value = tanggal
-                    function convertToTimeFormat(timeString) {
-                        const timeParts = timeString.split(':');
-                        return timeParts[0] + ':' + timeParts[1];
-                    }
+                    detailButton.href = `/absen/${item.absen_id}?nama=${item.nama}&tgl=${tanggal}`;
 
-                    document.getElementById('jamBukaUpdate').value = convertToTimeFormat(item.jam_buka);
-                    document.getElementById('jamTutupUpdate').value = convertToTimeFormat(item.jam_tutup);
+                    editButton.addEventListener('click', () => {
+                        document.getElementById("modal").style.display = "block";
+                        document.getElementById("namaUpdate").value = item.nama;
+                        document.getElementById('tanggalUpdate').value = tanggal;
 
-                    document.getElementById('updateAbsen').addEventListener('submit', (event) => {
-                        event.preventDefault();
+                        function convertToTimeFormat(timeString) {
+                            const timeParts = timeString.split(':');
+                            return timeParts[0] + ':' + timeParts[1];
+                        }
 
-                        const nama = document.getElementById('namaUpdate').value
-                        const tanggal = document.getElementById('tanggalUpdate').value
-                        const jamBuka = document.getElementById('jamBukaUpdate').value
-                        const jamTutup = document.getElementById('jamTutupUpdate').value
+                        document.getElementById('jamBukaUpdate').value = convertToTimeFormat(item.jam_buka);
+                        document.getElementById('jamTutupUpdate').value = convertToTimeFormat(item.jam_tutup);
 
-                        var myHeaders = new Headers();
-                        myHeaders.append("Content-Type", "application/json");
-                        myHeaders.append('authorization', 'Bearer ' + token);
-
-                        var raw = JSON.stringify({
-                            "nama": nama,
-                            "tanggal": tanggal,
-                            "jam_buka": jamBuka,
-                            "jam_tutup": jamTutup
+                        document.getElementById('updateAbsen').addEventListener('submit', (event) => {
+                            event.preventDefault();
+                            updateAbsen(item.absen_id);
                         });
+                    });
 
-                        var requestOptions = {
-                            method: 'POST',
-                            headers: myHeaders,
-                            body: raw,
-                            redirect: 'follow'
-                        };
+                    cell5.append(editButton);
+                    cell5.append(detailButton);
+                });
+                updatePagination()
+            };
 
-                        fetch(`http://localhost:3000/absen/${item.absen_id}/update`, requestOptions)
-                            .then(response => response.json())
-                            .then(result => {
-                                console.log(result);
-                                if (result.success) {
-                                    localStorage.setItem("flashMessage", result.success);
-
-                                    const randomValue = new Date().getTime(); // Nilai waktu acak
-                                    location.href = `?random=${randomValue}`;
-                                } else if (result.error) {
-                                    alert('gagal', result.error)
-
-                                }
-                            })
-                            .catch(error => {
-                                console.log('error', error)
-                                alert(error)
-                            });
-                    })
-                })
-
-                cell4.append(edtiButton)
-                cell4.append(detailButton)
-
-
-
+            // Search functionality
+            document.getElementById('search').addEventListener('input', (event) => {
+                const searchTerm = event.target.value.toLowerCase();
+                const filteredData = data.filter(item => item.nama.toLowerCase().includes(searchTerm));
+                currentPage = 1; // Reset current page to 1 when searching
+                updateTable(filteredData);
             });
+
+            // Pagination functionality
+            document.getElementById('previousPage').addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    updateTable(data);
+                }
+            });
+
+            document.getElementById('nextPage').addEventListener('click', () => {
+                const totalPages = Math.ceil(data.length / itemsPerPage);
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    updateTable(data);
+                }
+            });
+
+            // Initial table rendering
+            updateTable(data);
         })
         .catch(error => console.log('error', error));
 }
@@ -160,4 +154,52 @@ function createAbsen() {
     })
 }
 
+function updateAbsen(idAbsen){
+    const nama = document.getElementById('namaUpdate').value
+    const tanggal = document.getElementById('tanggalUpdate').value
+    const jamBuka = document.getElementById('jamBukaUpdate').value
+    const jamTutup = document.getElementById('jamTutupUpdate').value
 
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append('authorization', 'Bearer ' + token);
+
+    var raw = JSON.stringify({
+        "nama": nama,
+        "tanggal": tanggal,
+        "jam_buka": jamBuka,
+        "jam_tutup": jamTutup
+    });
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch(`http://localhost:3000/absen/${idAbsen}/update`, requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            if (result.success) {
+                localStorage.setItem("flashMessage", result.success);
+
+                const randomValue = new Date().getTime(); // Nilai waktu acak
+                location.href = `?random=${randomValue}`;
+            } else if (result.error) {
+                alert('gagal', result.error)
+
+            }
+        })
+        .catch(error => {
+            console.log('error', error)
+            alert(error)
+        });
+}
+
+
+function updatePagination() {
+    document.getElementById("currentPage").textContent = currentPage;
+    document.getElementById("currentPage").style.color = 'white';
+  }

@@ -6,6 +6,7 @@ document.getElementById('logout').addEventListener('click',()=>{
         window.location.reload( )
     }
 })
+
 if (!token) {
     window.location.href = "/login"
 }
@@ -65,3 +66,10 @@ function ubahBulanKeNama(tgl) {
 
     return hasil;
 }
+
+var thElements = document.querySelectorAll('th');
+
+// Menambahkan kelas "text-center" pada setiap elemen <th>
+thElements.forEach(function (th) {
+    th.classList.add('text-center');
+});
