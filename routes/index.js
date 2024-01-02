@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const {login} = require('../controllers/authController')
+const {login, getProfile} = require('../controllers/authController')
 const { getAllAsisten, createAsisten, updateAsisten, deleteAsisten } = require('../controllers/asistenController');
 const { getAllPraktikan, createPraktikan, updatePraktikan, deletePraktikan } = require('../controllers/praktikanController');
 const { getAllTugas, createTugas, updateTugas, deleteTugas } = require('../controllers/tugasController');
@@ -76,5 +76,5 @@ router.post('/submitTugas/:tugas_id',upload.single('laporan'),submitLaporan)
 router.get('/praktikan/detailAbsen', absenPraktikan)
 router.post('/submitAbsen/:absen_id',submitAbsen)
 
-
+router.get('/profileUser',getProfile)
 module.exports = router;

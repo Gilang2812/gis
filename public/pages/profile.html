@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/stylesheets/styles.css">
     <link rel="stylesheet" href="/stylesheets/outpus.css">
 
-    <title>Pengumpulan Absen</title>
+    <title>Asisten</title>
     <style>
 
     </style>
@@ -20,14 +20,9 @@
 
 <body>
     <div class="bg-[#264762] h-10 shadow-sm px-7 shadow-slate-700 flex justify-between items-center ">
-        <img src="/images/icon_gis.png" class="rounded-full  bg-slate-100  h-8 w-8 border-solid border-red-900 border-2" alt="img nya">
+        <img src="/images/icon_gis.png" class="rounded-full  bg-slate-100  h-8 w-8 border-solid border-red-900 border-2"
+            alt="img nya">
         <a href="/profile" class="  bg-[#264762] hover:bg-blue-300 hover:text-red-500 text-white" ><i class="bi bi-person-badge"></i></a>
-       
-    </div>
-    <div class="header">
-        <div id="flash-message"></div>
-    </div>
-    <div class="container text-center">
     </div>
     <div>
         <div class="row  ">
@@ -39,7 +34,7 @@
                 </div>
                 <div class=" my-2 text-center vh-50 py-2 rounded ">
                     <a href="/asisten/index">
-                        <div class="border-top-bottom hover-zoom"><i class="bi bi-person-check"></i></div>
+                        <div class="border-top-bottom hover-zoom"><i class="bi bi-people"></i></div>
                     </a>
                     <a href="/praktikan/index">
                         <div class="border-top-bottom hover-zoom"><i class="bi bi-person"></i></div>
@@ -51,42 +46,29 @@
                         <div class="border-top-bottom hover-zoom"><i class="bi bi-calendar-check"></i></div>
                     </a>
                 </div>
+
             </div>
 
             <div class="col ">
                 <div class="header">
                     <div id="flash-message"></div>
                 </div>
-                <div class="container">
-                    <div class="py-3 my-5 text-center" style="border-bottom: solid 1px #fff;">
-                        <h2 id="title">List Pengumpulan Absen</h2>
-                        <h3 id="waktu">00 Bulan 0000</h3>
+                <div class="container mx-auto py-8">
+                    <div class="text-center border-b border-solid border-gray-300">
+                        <h2 class="text-2xl font-semibold">List Asisten</h2>
                     </div>
-                    <!-- Tambahkan tombol "Halaman Sebelumnya" dan "Halaman Berikutnya" -->
-
-                    <div class="vh-100 py-3 my-5">
-                        <table  id="PengumpulanAbsenTable">
-                            <thead class="text-center">
-                                <tr>
-                                    <th scope="col">NO</th>
-                                    <th scope="col">Nim</th>
-                                    <th scope="col">Nama Praktikan</th>
-                                    <th scope="col">Status Kehadiran</th>
-                                </tr>
-                            </thead>
-                            <tbody class="table-group-divider" id="tableBody">
-                                <tr>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="pagination">
-                            <button class="btn btn-primary" id="previousPage">-</button>
-                            <span id="currentPage" class="mx-2"></span>
-                            <button class="btn btn-primary" id="nextPage">+</button>
+                    <div class="flex justify-center pt-10 pb-56 h-screen">
+                        <!-- Profile Section -->
+                        <div class="bg-white p-28 rounded shadow-md text-center animate__animated animate__fadeIn">
+                            <h1 id="nama" class="text-7xl pb-6 font-bold mb-2">John Doe</h1>
+                            <p id="email" class="text-gray-600 mb-2 text-3xl">Email: john.doe@example.com</p>
+                            <p id="kelas" class="text-gray-600 text-2xl"></p>
+                            <button id="editPassword" class="bg-blue-500 p-2 px-4 rounded-lg my-10 text-white text-xl">Edit Password</button>
                         </div>
-                        <input type="hidden" class="btn btn-primary" id="scrollButton">
-                        </div>
+                        <!-- End Profile Section -->
+                    </div>
                 </div>
+                
             </div>
 
         </div>
@@ -97,39 +79,48 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Cek</h5>
+                    <h5 class="modal-title">Update Name</h5>
                     <span id="closeModalBtn" class="btn-close" aria-label="Close">
                         <span aria-hidden="true"></span>
                     </span>
                 </div>
-                <form id="updateNilai">
+                <form id="updateProfile">
                     <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="oldPassword" class="form-label">Password Lama </label>
+                            <input type="password" class="form-control" id="oldPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updatePassword" class="form-label">Password Baru</label>
+                            <input type="password" class="form-control" id="updatePassword"
+                                aria-describedby="updatePassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Ketik ulang password baru </label>
+                            <input type="password" class="form-control" id="confirmPassword" required>
+                        </div>
 
-                    <h1 id="nama_pengumpul">..</h1>
-                    <h4 id="nim" >..</h4>
-                    <p id="penilai">Penilai :</p>
-                    <label for="nilai">nilai :</label>
-                    <input style="border: none;" type="number" name="nilai" id="nilai" placeholder="...">
-                    <iframe height="200px" width="450px" src="/images/1698373885625-Pertemuan 6.pdf" frameborder="2" name="filename_preview"
-                    id="laporan"></iframe>
                     </div>
                     <div class="modal-footer">
                         <span id="closeModal" class="btn btn-secondary rounded-pill">Close</span>
-                        <button type="submit" id="closeModal" class="btn btn-success rounded-pill">Nilai</button
-                            type="submit">
+                        <button type="submit" id="closeModal"
+                            class="btn btn-success bg-green-600 rounded-pill">Update</button type="submit">
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    <!-- Button trigger modal -->
+<button id="scrollButton"type="hidden"></button>
+  </div>
 
     <!--  -->
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
-    <script src="../javascripts/ScriptGeneral.js"></script>
-<script src="../javascripts/ScriptDetailAbsen.js"></script>
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+</script>
+<script src="../javascripts/ScriptGeneral.js"></script>
+<script src="../javascripts//scriptProfile.js"></script>
 <script>
 
 </script>

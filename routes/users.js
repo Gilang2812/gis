@@ -35,6 +35,9 @@ router.get('/praktikan/absen', (req, res, next)=> {
 router.get('/praktikan/tugas', (req, res, next)=> {
   res.sendFile(link+"TugasPraktikan.html")
 });
+router.get('/profile', (req, res, next)=> {
+  res.sendFile(link+"profile.html")
+});
 
 
 module.exports = router;

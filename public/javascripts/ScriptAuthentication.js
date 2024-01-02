@@ -25,7 +25,9 @@ function login() {
                     let role = result.role
                     console.log(role)
                     let token=result.token
+                  
                     sessionStorage.setItem("token", token);
+                    sessionStorage.setItem("role", role);
                     localStorage.setItem("flashMessage", result.message);
                     if(role==='asisten'){
                         window.location=`/${role}/index`

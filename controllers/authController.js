@@ -67,26 +67,26 @@ const login = async (req, res) => {
 // JWT
 
 const getProfile = async (req, res) => {
-
     try {
-        const { user_id } = req.user;
-        const user = await User.findOne({ where: { user_id: user_id } });
+        let user_id = req.user.user.asisten_id ? req.user.user.asisten_id : req.user.user.praktikan_id;
+        const asisten = await Asisten.findOne({ where: { asisten_id : user_id } });
+        const praktikan = await Praktikan.findOne({ where: { praktikan_id : user_id } });
 
-        if (!user) {
-            return res.status(400).json({ message: "tidak ketemu" });
+        if (!asisten) {
+            if(!praktikan){
+                return res.status(400).json({ message: "tidak ketemu = "+user_id });
+            }
+
+           return res.status(200).json( praktikan );
         }
-        let response = {
-            user: user,
-        };
-
-        console.log(response);
-        res.status(200).json({ response });
+        res.status(200).json(asisten);
 
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: "KACIAN ERROR" });
     }
 };
+
 
 
 const logout = async (req, res) => {
